@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
         minlength: [8, 'Password must be of atleast 8 characters!'],
         required: [true, 'Password is required!']
     }
-});
+}, { timestamps: true });
 
 // This function is called when new user account is being created
 userSchema.pre('save', async function(next) {
