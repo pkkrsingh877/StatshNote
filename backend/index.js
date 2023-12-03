@@ -23,13 +23,16 @@ app.use(cors({
     credentials: true, // Allow credentials (cookies)
 }));
 
+// Middleware
+const verifyUser = require('./middlewares/verifyUser');
+
 // Files for Route Handlers
 const notesRoutes = require('./routes/notes');
 const authRoutes = require('./routes/auth');
 // const userRoutes = require('./routes/users');
 
 // Middleware for Routes
-app.use('/notes', notesRoutes);
+app.use('/notes', verifyUser, notesRoutes);
 app.use('/auth', authRoutes);
 // app.use('/user', userRoutes);
 

@@ -57,7 +57,6 @@ const handleLogin = async (e) => {
         }),
         credentials: 'include'
     })
-    console.log(username, password)
 }
 </script>
 
