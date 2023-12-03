@@ -26,12 +26,12 @@ app.use(cors({
 // Files for Route Handlers
 const notesRoutes = require('./routes/notes');
 const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
+// const userRoutes = require('./routes/users');
 
 // Middleware for Routes
 app.use('/notes', notesRoutes);
 app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
+// app.use('/user', userRoutes);
 
 // Database setup
 
