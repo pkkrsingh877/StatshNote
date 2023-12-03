@@ -11,10 +11,26 @@ const path = require('path');
 // Middlewares
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(cors());
+app.use(express.json());
+app.use(methodOverride('_method'));
 app.use(morgan('dev'));
-app.use(methodOverride());
+app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // Allow credentials (cookies)
+}));
+
+// Files for Route Handlers
+const notesRoutes = require('./routes/notes');
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
+
+// Middleware for Routes
+app.use('/notes', notesRoutes);
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 // Database setup
 
