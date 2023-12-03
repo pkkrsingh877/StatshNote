@@ -1,7 +1,7 @@
 <template>
     <div class="columns is-centered">
         <div class="column is-half">
-            <h1 class="title">Create New Note</h1>
+            <h1 class="title">Edit Note</h1>
             <form action="">
                 <div class="field">
                     <label class="label">Title</label>
