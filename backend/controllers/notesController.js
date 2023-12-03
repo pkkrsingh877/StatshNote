@@ -6,7 +6,7 @@ const getNotes = async (req, res) => {
         res.status(200).json(notes);
     } catch (error) {
         console.log(error);
-        res.status(400).json({ "error": "Couldn't Get The Data"});
+        res.status(400).json({ "error": "Couldn't Get The Data" });
     }
 }
 
@@ -24,7 +24,7 @@ const getNote = async (req, res) => {
 const createNote = async (req, res) => {
     try {
         const { title, description } = req.body;
-        const note = await Note.create({ title, description });
+        const note = await Note.create({ title, description, userId: req.user });
         res.status(200).json({ id: note._id });
     } catch (error) {
         console.log(error);
@@ -42,7 +42,7 @@ const updateNote = async (req, res) => {
         res.status(200).json({ id: note._id });
     } catch (error) {
         console.log(error);
-        res.status(400).json({"error": "Couldn't Update the note"});
+        res.status(400).json({ "error": "Couldn't Update the note" });
     }
 }
 
