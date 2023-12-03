@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const cors = require('cors');
 const path = require('path');
+const morgan = require('morgan');
 
 // Middlewares
 
