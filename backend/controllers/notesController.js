@@ -2,7 +2,7 @@ const Note = require("../models/note");
 
 const getNotes = async (req, res) => {
     try {
-        let notes = await Note.find({});
+        let notes = await Note.find({ userId: req.user });
         res.status(200).json(notes);
     } catch (error) {
         console.log(error);
@@ -13,7 +13,7 @@ const getNotes = async (req, res) => {
 const getNote = async (req, res) => {
     try {
         const { id } = req.params;
-        const note = await Note.findById(id);
+        const note = await Note.findOne({ _id: id, userId: req.user });
         res.status(200).json(note);
     } catch (error) {
         console.log(error);
@@ -36,7 +36,7 @@ const updateNote = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, description } = req.body;
-        const note = await Note.findByIdAndUpdate(id, {
+        const note = await Note.findOneAndUpdate({ _id: id, userId: req.user }, {
             title, description, updatedAt: Date.now()
         });
         res.status(200).json({ id: note._id });
@@ -49,7 +49,7 @@ const updateNote = async (req, res) => {
 const deleteNote = async (req, res) => {
     try {
         const { id } = req.body;
-        const note = await Note.findByIdAndDelete(id);
+        const note = await Note.findOneAndDelete({ _id: id, userId: req.user });
         res.status(200).json({ status: 'success' });
     } catch (error) {
         console.log(error);
