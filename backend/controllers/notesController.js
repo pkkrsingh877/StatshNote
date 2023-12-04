@@ -48,7 +48,7 @@ const updateNote = async (req, res) => {
 
 const deleteNote = async (req, res) => {
     try {
-        const { id } = req.body;
+        const { id } = req.params;
         const note = await Note.findOneAndDelete({ _id: id, userId: req.user });
         res.status(200).json({ status: 'success' });
     } catch (error) {
