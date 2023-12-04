@@ -26,9 +26,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const title = ref('')
-const description = ref('')
+import { ref } from 'vue';
+const router = useRouter();
+const title = ref('');
+const description = ref('');
 
 // Fetch notes from the server
 const fetchNote = async () => {
@@ -67,7 +68,8 @@ const handleUpdateNote = async (e) => {
             description: description.value
         }),
         credentials: 'include'
-    })
+    });
+    router.push('/notes');
 }
 </script>
 
