@@ -24,8 +24,8 @@ const getNote = async (req, res) => {
 const createNote = async (req, res) => {
     try {
         const { title, description } = req.body;
-        const note = await Note.create({ title, description, userId: req.user });
-        res.status(200).json({ id: note._id });
+        await Note.create({ title, description, userId: req.user });
+        res.status(200).json({ status: "success" });
     } catch (error) {
         console.log(error);
         res.status(400).json({ error: "Couldn't Create Note in DB" });
@@ -36,10 +36,10 @@ const updateNote = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, description } = req.body;
-        const note = await Note.findOneAndUpdate({ _id: id, userId: req.user }, {
+        await Note.findOneAndUpdate({ _id: id, userId: req.user }, {
             title, description, updatedAt: Date.now()
         });
-        res.status(200).json({ id: note._id });
+        res.status(200).json({ status: "success" });
     } catch (error) {
         console.log(error);
         res.status(400).json({ "error": "Couldn't Update the note" });

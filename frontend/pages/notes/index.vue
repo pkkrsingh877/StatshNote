@@ -64,11 +64,7 @@ const deleteNote = async (id) => {
             },
             credentials: 'include'
         });
-        if (response.ok) {
-            const message = await response.json();
-            console.log(message);
-            router.push('/notes');
-        }
+        notes.value.splice(id, 1);
     } catch (error) {
         console.error('Error deleting notes:', error);
     }
