@@ -1,30 +1,27 @@
 <template>
     <div class="container">
-        <section class="section">
-            <div class="columns is-centered">
-                <div v-if="notes.length === 0" class="column">
-                    No notes available.
-                </div>
-                <div v-else>
-                    <div v-for="note in notes" :key="note._id"
-                        class="column is-12-desktop is-half-tablet is-offset-1-desktop">
-                        <div class="card">
-                            <header class="card-header">
-                                <p class="card-header-title">{{ note.title }}</p>
-                            </header>
-                            <div class="card-content">
-                                <div class="content">{{ note.description }}</div>
-                            </div>
-                            <footer class="card-footer">
-                                <a :href="`/notes/${note._id}`" class="card-footer-item">View</a>
-                                <a :href="`/notes/edit/${note._id}`" class="card-footer-item">Edit</a>
-                                <a @click="deleteNote(note._id)" class="card-footer-item">Delete</a>
-                            </footer>
+        <div class="section">
+            <div v-if="notes.length === 0">
+                No notes available.
+            </div>
+            <div v-else>
+                <div v-for="note in notes" :key="note._id">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">{{ note.title }}</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">{{ note.description }}</div>
                         </div>
+                        <footer class="card-footer">
+                            <a :href="`/notes/${note._id}`" class="card-footer-item">View</a>
+                            <a :href="`/notes/edit/${note._id}`" class="card-footer-item">Edit</a>
+                            <a @click="deleteNote(note._id)" class="card-footer-item">Delete</a>
+                        </footer>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </template>
 
@@ -72,4 +69,8 @@ const deleteNote = async (id) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.card {
+    min-width: 2rem;
+}
+</style>
