@@ -6,7 +6,7 @@
             </div>
             <div v-else>
                 <div v-for="note in notes" :key="note._id">
-                    <div class="card">
+                    <div class="card  mb-4">
                         <header class="card-header">
                             <p class="card-header-title">{{ note.title }}</p>
                         </header>
