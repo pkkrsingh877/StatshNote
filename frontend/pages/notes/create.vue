@@ -26,13 +26,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const title = ref('')
-const description = ref('')
+import { ref } from 'vue';
+const router = useRouter();
+const title = ref('');
+const description = ref('');
 
 const handleCreateNote = async (e) => {
     e.preventDefault();
-    const { message } = await useFetch('http://localhost:8000/notes/', {
+    const { data, error, pending } = await useFetch('http://localhost:8000/notes/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -43,7 +44,8 @@ const handleCreateNote = async (e) => {
             description: description.value
         }),
         credentials: 'include'
-    })
+    });
+    router.push('/notes');
 }
 </script>
 
