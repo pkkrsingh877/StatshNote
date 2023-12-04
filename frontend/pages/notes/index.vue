@@ -30,7 +30,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-const router = useRouter();
 const notes = ref([]);
 
 const fetchNotes = async () => {
@@ -44,7 +43,9 @@ const fetchNotes = async () => {
             credentials: 'include'
         });
         const data = await response.json();
-        notes.value = data;
+        if (data.message !== 'Unauthorized: No token provided') {
+            notes.value = data;
+        }
     } catch (error) {
         console.error('Error fetching notes:', error);
     }
