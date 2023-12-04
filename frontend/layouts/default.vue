@@ -14,8 +14,11 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <NuxtLink class="navbar-item" to="/">
-                    Home
+                <NuxtLink class="navbar-item" to="/notes">
+                    Notes
+                </NuxtLink>
+                <NuxtLink class="navbar-item" to="/notes/create">
+                    Create
                 </NuxtLink>
                 <NuxtLink class="navbar-item" to="/about">
                     About
@@ -44,15 +47,15 @@
 
 <script setup>
 const onBurgerClick = () => {
-  const navbarBurger = document.querySelector('.navbar-burger');
-  const navItems = document.querySelector('#navbarBasicExample');
-  navbarBurger.classList.toggle('is-active');
-  navItems.classList.toggle('is-active');
+    const navbarBurger = document.querySelector('.navbar-burger');
+    const navItems = document.querySelector('#navbarBasicExample');
+    navbarBurger.classList.toggle('is-active');
+    navItems.classList.toggle('is-active');
 };
 
 if (process.client) {
-  const navbarBurger = document.querySelector('.navbar-burger');
-  navbarBurger.addEventListener('click', onBurgerClick);
+    const navbarBurger = document.querySelector('.navbar-burger');
+    navbarBurger.addEventListener('click', onBurgerClick);
 }
 </script>
 
