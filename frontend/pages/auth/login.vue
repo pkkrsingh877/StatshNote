@@ -39,9 +39,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-const username = ref('')
-const password = ref('')
+import { ref } from 'vue';
+const router = useRouter();
+const username = ref('');
+const password = ref('');
 
 const handleLogin = async (e) => {
     e.preventDefault();
@@ -56,7 +57,8 @@ const handleLogin = async (e) => {
             password: password.value
         }),
         credentials: 'include'
-    })
+    });
+    router.push('/notes');
 }
 </script>
 
