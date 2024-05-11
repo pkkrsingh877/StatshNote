@@ -17,7 +17,7 @@ app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://statsh-note.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true, // Allow credentials (cookies)
@@ -40,7 +40,7 @@ app.use('/auth', authRoutes);
 
 const databaseSetup = async () => {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/notesapp');
+        await mongoose.connect(process.env.MONGO_URI);
         console.log('DB Connection Successful');
     } catch (error) {
         console.log(error);
